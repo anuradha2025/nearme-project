@@ -1,0 +1,44 @@
+.top-bar {
+  z-index: 2;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 0.8rem;
+  font-size: 1.4rem;
+  color: white;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.top-bar * {
+  border: none;
+}
+
+.top-bar>* {
+  cursor: pointer;
+}
+
+.top-bar .nav-select * {
+  background: transparent;
+}
+
+.top-bar .login {
+  font-size: 1rem;
+  padding: 6px 27px;
+  border-radius: 20px;
+  font-weight: var(--font-medium-weight);
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+  }
+
+  .top-bar .login {
+    padding: 4px 20px;
+  }
+}
