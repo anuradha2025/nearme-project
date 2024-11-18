@@ -1,11 +1,10 @@
-import "../assets/styles/maingroup.css";
-
+import styles from "./MainGroup.module.css";
 import GradientText from "./GradientText";
 import SearchBar from "./Searchbar";
 
 const MainGroup = () => {
   return (
-    <div className="main-group">
+    <div className={styles.mainGroup}>
       <GradientText
         text="NearMe"
         gradientColors={[
@@ -14,7 +13,7 @@ const MainGroup = () => {
           { color: "#de4e31", stop: "100%" },
         ]}
       />
-      <p className="main-group-text">
+      <p className={styles.mainGroupText}>
         Find trusted <span>services</span> and top <span>products</span> in your
         area instantly.
         <br /> Start your search below

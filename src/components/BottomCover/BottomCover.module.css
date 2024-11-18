@@ -1,4 +1,4 @@
-.bottom-cover {
+.bottomCover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -11,45 +11,44 @@
   padding: 3rem;
 }
 
-.bottom-cover .welcome-cover,
-.bottom-cover .contact-cover {
+.welcomeCover,
+.contactCover {
   max-width: 50%;
   padding: 0 1em;
-
 }
 
-.bottom-cover .contact-cover h1,
-.bottom-cover .welcome-cover h1 {
+.contactCover h1,
+.welcomeCover h1 {
   font-size: 2.5rem;
   font-weight: 300;
   margin-bottom: 0.5em;
 }
 
-.bottom-cover .welcome-cover p {
+.welcomeCover p {
   font-size: 1em;
   font-weight: 100;
   text-align: justify;
 }
 
-.bottom-cover .contact-cover p {
+.contactCover p {
   font-size: 1.1em;
   font-weight: 200;
   display: block;
 }
 
 @media (max-width: 768px) {
-  .bottom-cover {
+  .bottomCover {
     flex-direction: column;
   }
 
-  .bottom-cover .welcome-cover,
-  .bottom-cover .contact-cover {
+  .welcomeCover,
+  .contactCover {
     max-width: unset;
     padding: 0;
     width: 100%;
   }
 
-  .bottom-cover .contact-cover h1 {
+  .contactCover h1 {
     margin: 0.5em 0;
   }
 }

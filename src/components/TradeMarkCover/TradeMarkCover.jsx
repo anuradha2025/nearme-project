@@ -1,8 +1,8 @@
-import "../assets/styles/TradeMarkCover.css";
+import styles from "./TradeMarkCover.module.css";
 
 const TradeMarkCover = () => {
   return (
-    <div className="trademark-cover">
+    <div className={styles.trademarkCover}>
       <h5>
         Explore the best products and services from trusted providers around
         you.

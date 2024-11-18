@@ -1,32 +1,32 @@
-.trademark-cover {
+.trademarkCover {
   justify-content: center;
   background-color: #292929;
   width: 100%;
   padding: 1.5em 2em;
 }
 
-.trademark-cover h5,
-.trademark-cover p {
+.trademarkCover h5,
+.trademarkCover p {
   text-align: center;
   color: #cbcbcb;
   font-size: 1em;
   font-weight: 300;
 }
 
-.trademark-cover h5 {
+.trademarkCover h5 {
   font-size: 1.2em;
 }
 
 @media (max-width: 768px) {
-  .trademark-cover {
+  .trademarkCover {
     padding: 1em;
   }
 
-  .trademark-cover h5 {
+  .trademarkCover h5 {
     font-size: 0.9em;
   }
 
-  .trademark-cover p {
+  .trademarkCover p {
     font-size: 0.8em;
   }
 }

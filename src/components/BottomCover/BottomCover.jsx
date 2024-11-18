@@ -1,20 +1,20 @@
-import "../assets/styles/bottomcover.css";
+import styles from "./bottomcover.module.css";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { CiLinkedin } from "react-icons/ci";
 
 const BottomCover = () => {
   return (
-    <div className="bottom-cover">
-      <WelcomCover />
+    <div className={styles.bottomCover}>
+      <WelcomeCover />
       <ContactUsCover />
     </div>
   );
 };
 
-const WelcomCover = () => {
+const WelcomeCover = () => {
   return (
-    <div className="welcome-cover">
+    <div className={styles.welcomeCover}>
       <h1>Welcome to Nearme.lk!</h1>
       <p>
         Find the best services and products near you with just a few clicks. Log
@@ -29,7 +29,7 @@ const WelcomCover = () => {
 
 const ContactUsCover = () => {
   return (
-    <div className="contact-cover">
+    <div className={styles.contactCover}>
       <h1>Contact Us</h1>
       <p>For inquiries or support, reach out to us at:</p>
       <p>Email: support@nearme.lk</p>
