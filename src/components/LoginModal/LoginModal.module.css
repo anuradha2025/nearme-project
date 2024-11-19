@@ -1,57 +1,110 @@
+/* LoginModal.module.css */
 .modalOverlay {
-  @apply fixed inset-0 z-50 flex items-center justify-center;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsla(0, 0%, 45%, 0.5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
 }
 
-.modalContent {
-  @apply bg-white rounded-lg shadow-xl w-full max-w-4xl mx-4 relative;
-  animation: modalFadeIn 0.2s ease-out;
+.modalOverlay>div {
+  background: hsla(0, 0%, 83%, 0.9);
 }
 
-.modalColumn {
-  @apply w-full md:w-1/2 p-8;
+.socialLoginBtn {
+  background: #d9d9d9;
+  border-radius: 0.9rem;
+  border: 2px hsl(0, 0%, 72%) solid;
+  ;
 }
 
-.modalLeftColumn {
-  @apply border-b md:border-b-0 md:border-r border-gray-200;
+.socialLoginBtn:hover {
+  background: hsl(0, 0%, 90%);
 }
 
-.modalTitle {
-  @apply text-4xl font-semibold text-gray-800 mb-4;
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  border: none;
+  background-color: rgb(0, 0, 0);
+  color: hsla(0, 0%, 100%, 0.8);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
-.modalDescription {
-  @apply text-gray-600 text-sm leading-relaxed;
+.closeButton:hover {
+  background-color: hsl(0, 100%, 45%);
+  color: #ffffff;
 }
 
-.phoneInput {
-  @apply flex mb-4;
+.divider {
+  width: 2px;
+  background-color: #bdbdbd;
+  margin: 2.5rem 1rem;
 }
 
-.countrySelect {
-  @apply bg-white border border-gray-300 rounded-l-md px-3 py-2 text-gray-600 focus:outline-none focus:border-blue-500 w-20;
+.phoneInputContainer :global(.react-tel-input .form-control) {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  background-color: white;
+  border: none;
+  border-radius: 0.375rem;
 }
 
-.numberInput {
-  @apply flex-1 border border-l-0 border-gray-300 rounded-r-md px-4 py-2 focus:outline-none focus:border-blue-500;
+.phoneInputContainer :global(.react-tel-input .flag-dropdown) {
+  background-color: white;
+  border: none;
+  border-radius: 0.375rem 0 0 0.375rem;
 }
 
-.loginButton {
-  @apply w-full bg-red-500 text-white rounded-md py-2 hover:bg-red-600 transition-colors;
+.phoneInputContainer :global(.react-tel-input .selected-flag:hover),
+.phoneInputContainer :global(.react-tel-input .selected-flag:focus) {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-.socialButton {
-  @apply w-full flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2 hover:bg-gray-50 transition-colors;
+.phoneInputContainer :global(.react-tel-input .country-list) {
+  margin: 4px 0;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  text-align: left;
 }
 
-@keyframes modalFadeIn {
+.phoneInputContainer :global(.react-tel-input .country-list .search) {
+  padding: 10px;
+  margin: 0;
+}
+
+.phoneInputContainer :global(.react-tel-input .country-list .search-box) {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+}
+
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.95);
   }
+
   to {
     opacity: 1;
-    transform: scale(1);
   }
 }

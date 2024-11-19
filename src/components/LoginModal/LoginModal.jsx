@@ -1,98 +1,125 @@
-import React, { useState, useEffect } from "react";
-import { IoClose } from "react-icons/io5";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
+import React, { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import styles from "./LoginModal.module.css";
 
+import { FcGoogle } from "react-icons/fc";
+
+import { FaFacebook } from "react-icons/fa";
+
 const LoginModal = ({ isOpen, onClose }) => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-
-    if (isOpen) {
-      window.addEventListener("keydown", handleEsc);
-      // Prevent scrolling when modal is open
-      document.body.style.overflow = "hidden";
-    }
-
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen, onClose]);
+  const [phone, setPhone] = useState("");
+  const [valid, setValid] = useState(false);
 
   if (!isOpen) return null;
 
+  const handleLogin = () => {
+    if (valid) {
+      console.log("Logging in with:", phone);
+    } else {
+      console.log("Please enter a valid phone number");
+    }
+  };
+
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className={styles.modalOverlay} onClick={onClose}>
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.modalOverlay} onClick={handleBackdropClick}>
+
+      <div
+        className="container flex justify-between p-8 pb-4  border-2 border-white max-w-4xl relative" style={{ borderRadius: "0.8rem" }}
+      >
+
+        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 transition-colors"
+          className={styles.closeButton}
+          aria-label="Close modal"
         >
-          <IoClose size={24} />
+          ×
         </button>
 
-        <div className="flex flex-col md:flex-row">
-          <div className={`${styles.modalColumn} ${styles.modalLeftColumn}`}>
-            <div className="max-w-sm">
-              <h1 className={styles.modalTitle}>Login</h1>
-              <p className={styles.modalDescription}>
-                Log in to find the best services and products near you. Access
-                personalized recommendations and manage your preferences.
-              </p>
+        {/* Left Section */}
+        <div className="flex flex-col justify-start p-8 w-1/2">
+
+          <h1 className="text-4xl font-light mb-4">Login</h1>
+          <p className="text-gray-600  text-sm leading-tight quicksand">
+
+            Log in to find the best services and products near you. Access
+            personalized recommendations and manage your preferences.
+          </p>
+        </div>
+        {/* Divider */}
+        <div className={styles.divider} />
+
+        {/* Right Section */}
+        <div className="flex flex-col justify-center p-8 w-1/2">
+
+          <h3 className="text-gray-600 quicksand text-lg mb-2">
+
+            Continue with mobile number & OTP
+          </h3>
+          <div className="flex flex-col justify-between text-center">
+
+            <div className={styles.phoneInputContainer}>
+
+              <PhoneInput
+                country={"lk"}
+                value={phone}
+                onChange={(phone, country, e, formattedValue) => {
+                  setPhone(phone);
+                  setValid(phone.length >= 10);
+                }}
+                inputClass="!w-full !h-10 !text-base"
+                containerClass="mb-2"
+                buttonClass="!h-10"
+                enableSearch
+                searchClass="!text-base"
+                searchPlaceholder="Search country..."
+                inputProps={{
+                  required: true,
+                  placeholder: "Enter phone number",
+                }}
+              />
             </div>
-          </div>
+            <button
+              onClick={handleLogin}
+              disabled={!valid}
+              className={`bg-red-600 text-white border-none py-3 mt-3 cursor-pointer transition-colors ${!valid ? "opacity-50 !cursor-not-allowed" : "hover:bg-red-700"}`}
+              style={{
+                borderRadius: "0.9rem",
+              }}
+            >
 
-          <div className={styles.modalColumn}>
-            <div className="max-w-sm mx-auto">
-              <div className="mb-6">
-                <label className="block text-sm text-gray-600 mb-2">
-                  Continue with mobile number & OTP
-                </label>
-                <div className={styles.phoneInput}>
-                  <select className={styles.countrySelect}>
-                    <option>+94</option>
-                  </select>
-                  <input
-                    type="tel"
-                    className={styles.numberInput}
-                    placeholder="Enter mobile number"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                  />
-                </div>
+              Login
+            </button>
+            <h3 className="text-gray-600 quicksand my-5">OR</h3>
+            <button
+              onClick={() => console.log("Google login")}
+              className={`${styles.socialLoginBtn} text-gray-500 hover:text-gray-600 py-3 mb-2 cursor-pointer font-medium  transition-colors flex items-center justify-center gap-2`}
+            >
+              <FcGoogle className="text-3xl" /> Continue with Google
+            </button>
+            <button
+              onClick={() => console.log("Facebook login")}
+              className={`${styles.socialLoginBtn} text-gray-500 hover:text-gray-600 py-3 mb-1 cursor-pointer font-medium  transition-colors flex items-center justify-center gap-2`}
+            >
+              <FaFacebook className="text-3xl text-blue-600" /> Continue with Facebook
+            </button>
+            <div className="mt-3">
+              <p className="text-gray-600 quicksand">
 
-                <button className={styles.loginButton}>Login</button>
-              </div>
+                <span>By signing up for an account you agree to our</span>
+                <br />
+                <a
+                  href="#"
+                  className="text-blue-600 hover:text-blue-800 transition-colors"
+                >
 
-              <div className="relative my-6">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-200"></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-4 text-gray-500 bg-white">OR</span>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <button className={styles.socialButton}>
-                  <FcGoogle size={20} />
-                  <span className="text-gray-600">Continue with Google</span>
-                </button>
-
-                <button className={styles.socialButton}>
-                  <FaFacebook size={20} className="text-blue-600" />
-                  <span className="text-gray-600">Continue with Facebook</span>
-                </button>
-              </div>
-
-              <p className="text-center text-gray-500 text-sm mt-6">
-                By signing up for an account you agree to our{" "}
-                <a href="#" className="text-blue-500 hover:underline">
                   Terms and Conditions
                 </a>
               </p>

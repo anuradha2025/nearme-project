@@ -69,16 +69,17 @@ const NavSelector = () => (
 const Topbar = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
+  const handleLoginClick = () => {
+    setIsLoginModalOpen(true);
+  };
+
   return (
     <>
       <div className={styles.topBar}>
         <NavSelector />
         <FiMessageCircle className={styles.icon} />
         <FaRegBell className={styles.icon} />
-        <button
-          className={styles.loginButton}
-          onClick={() => setIsLoginModalOpen(true)}
-        >
+        <button className={styles.loginButton} onClick={handleLoginClick}>
           Login
         </button>
       </div>
