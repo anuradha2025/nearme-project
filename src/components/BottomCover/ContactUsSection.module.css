@@ -1,0 +1,46 @@
+.contactUsContainer {
+  max-width: 50%;
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.contactUsContainer h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.contactUsDetails {
+  font-size: 1.1em;
+  font-weight: 200;
+  display: block;
+}
+
+.socialIcons {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  column-gap: 1em;
+}
+
+@media (min-width: 768px) {
+  .contactUsContainer h1 {
+    margin-bottom: 0.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactUsContainer {
+    max-width: unset;
+    padding: 0;
+    width: 100%;
+  }
+
+  .contactUsContainer h1 {
+    margin-top: 0.5em;
+  }
+}
