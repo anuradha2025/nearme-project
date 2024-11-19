@@ -1,4 +1,4 @@
-.search-bar-container {
+.searchBarContainer {
   display: flex;
   align-items: center;
   border: 1px solid rgb(209, 209, 209);
@@ -13,7 +13,7 @@
   margin-bottom: 20px;
 }
 
-.search-bar-input {
+.searchBarInput {
   flex: 1;
   border: none;
   background-color: transparent;
@@ -24,7 +24,7 @@
   color: white;
 }
 
-.search-bar-button {
+.searchBarButton {
   border: none;
   background-color: transparent;
   color: white;
@@ -35,17 +35,17 @@
 }
 
 @media (max-width: 768px) {
-  .search-bar-container {
+  .searchBarContainer {
     flex-direction: column;
     padding: 10px;
   }
 
-  .search-bar-input {
+  .searchBarInput {
     width: 100%;
     margin-bottom: 10px;
   }
 
-  .search-bar-button {
+  .searchBarButton {
     font-size: 1.5em;
   }
 }
