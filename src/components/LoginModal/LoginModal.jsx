@@ -31,7 +31,8 @@ const LoginModal = ({ isOpen, onClose }) => {
     <div className={styles.modalOverlay} onClick={handleBackdropClick}>
 
       <div
-        className="container flex justify-between p-8 pb-4  border-2 border-white max-w-4xl relative" style={{ borderRadius: "0.8rem" }}
+        className="container flex flex-col md:flex-row justify-between p-4 md:p-8 pb-4 border-2 border-white max-w-4xl relative"
+        style={{ borderRadius: "0.8rem" }}
       >
 
         {/* Close button */}
@@ -44,20 +45,19 @@ const LoginModal = ({ isOpen, onClose }) => {
         </button>
 
         {/* Left Section */}
-        <div className="flex flex-col justify-start p-8 w-1/2">
-
-          <h1 className="text-4xl font-light mb-4">Login</h1>
-          <p className="text-gray-600  text-sm leading-tight quicksand">
-
+        <div className="flex flex-col justify-start p-4 md:p-8 w-full md:w-1/2">
+          <h1 className="text-3xl md:text-4xl font-light mb-4">Login</h1>
+          <p className="text-gray-600 text-justify text-sm leading-tight quicksand">
             Log in to find the best services and products near you. Access
             personalized recommendations and manage your preferences.
           </p>
         </div>
+
         {/* Divider */}
-        <div className={styles.divider} />
+        <div className={`${styles.divider} hidden md:block`} />
 
         {/* Right Section */}
-        <div className="flex flex-col justify-center p-8 w-1/2">
+        <div className="flex flex-col justify-center p-4 md:p-8 w-full md:w-1/2">
 
           <h3 className="text-gray-600 quicksand text-lg mb-2">
 
