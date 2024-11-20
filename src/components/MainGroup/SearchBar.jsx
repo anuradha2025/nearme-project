@@ -39,7 +39,7 @@ const customSelectStyles = {
 
 const SearchBar = () => {
   return (
-    <div className={styles.searchBarContainer}>
+    <div className={`${styles.searchBarContainer} quicksand`}>
       <Select
         options={categories}
         isMulti
@@ -50,7 +50,7 @@ const SearchBar = () => {
         type="text"
         placeholder="Enter your location or search here to get started...."
         title="Enter your location or search here to get started...."
-        className={styles.searchBarInput}
+        className={`${styles.searchBarInput} quicksand`}
       />
       <button className={styles.searchBarButton}>
         <CiSearch />

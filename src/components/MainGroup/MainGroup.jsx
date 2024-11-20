@@ -1,6 +1,6 @@
 import styles from "./MainGroup.module.css";
 import GradientText from "./GradientText";
-import SearchBar from "./Searchbar";
+import SearchBar from "./SearchBar";
 
 const MainGroup = () => {
   return (
@@ -13,7 +13,7 @@ const MainGroup = () => {
           { color: "#de4e31", stop: "100%" },
         ]}
       />
-      <p className={styles.mainGroupText}>
+      <p className={`${styles.mainGroupText} quicksand`}>
         Find trusted <span>services</span> and top <span>products</span> in your
         area instantly.
         <br /> Start your search below

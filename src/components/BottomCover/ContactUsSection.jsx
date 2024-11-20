@@ -7,7 +7,7 @@ const ContactUsSection = () => {
     return (
         <div className={styles.contactUsContainer}>
             <h1>Contact Us</h1>
-            <div className={styles.contactUsDetails}>
+            <div className={`${styles.contactUsDetails} quicksand`}>
                 <p>For inquiries or support, reach out to us at:</p>
                 <p>Email: support@nearme.lk</p>
                 <p>Phone: +94 123 456 789</p>

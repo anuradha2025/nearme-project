@@ -21,7 +21,7 @@ const GradientText = ({
         color: "transparent",
         display: "inline-block",
         fontSize: "5em",
-        fontWeight: "var(--font-heavy-weight)",
+        fontWeight: "700",
         marginBottom: "0.7rem",
         zIndex: "-1",
       }}

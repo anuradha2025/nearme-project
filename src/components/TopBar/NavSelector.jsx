@@ -55,7 +55,7 @@ const NavSelector = () => {
         <Select
             styles={customStyles}
             components={{ DropdownIndicator }}
-            // className={styles.navSelect}
+            className='quicksand'
             options={options}
             placeholder="Select an option"
             isClearable={false}

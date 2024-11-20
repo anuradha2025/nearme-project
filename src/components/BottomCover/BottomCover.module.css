@@ -1,17 +1,5 @@
 .bottomCover {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
   background-color: #252525;
   z-index: 2;
-  margin-top: 8em;
   color: #c6c6c6;
-  padding: 3rem;
-}
-
-@media (max-width: 768px) {
-  .bottomCover {
-    flex-direction: column;
-  }
 }
