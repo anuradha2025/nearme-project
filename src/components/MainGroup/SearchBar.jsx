@@ -14,7 +14,7 @@ const customSelectStyles = {
     ...provided,
     backgroundColor: "transparent",
     border: "none",
-    color: "white",
+    // color: "white",
     minWidth: "150px",
     fontWeight: "300",
     cursor: "pointer",
@@ -30,16 +30,18 @@ const customSelectStyles = {
   multiValueLabel: (provided) => ({
     ...provided,
     color: "white",
+    backgroundColor: "transparent",
   }),
   option: (provided) => ({
     ...provided,
     cursor: "pointer",
+    // backgroundColor: "transparent",
   }),
 };
 
 const SearchBar = () => {
   return (
-    <div className={`${styles.searchBarContainer} quicksand`}>
+    <div className={`${styles.searchBarContainer}`}>
       <Select
         options={categories}
         isMulti
@@ -50,7 +52,7 @@ const SearchBar = () => {
         type="text"
         placeholder="Enter your location or search here to get started...."
         title="Enter your location or search here to get started...."
-        className={`${styles.searchBarInput} quicksand`}
+        className={`${styles.searchBarInput} font-light`}
       />
       <button className={styles.searchBarButton}>
         <CiSearch />

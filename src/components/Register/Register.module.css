@@ -1,0 +1,8 @@
+.socialLoginBtn {
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.socialLoginBtn:hover {
+  background-color: #f3f4f6;
+}
