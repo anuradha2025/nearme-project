@@ -13,7 +13,7 @@ const MainGroup = () => {
           { color: "#de4e31", stop: "100%" },
         ]}
       />
-      <p className={`${styles.mainGroupText} quicksand`}>
+      <p className={`${styles.mainGroupText} font-extralight`}>
         Find trusted <span>services</span> and top <span>products</span> in your
         area instantly.
         <br /> Start your search below

@@ -18,7 +18,8 @@
 }
 
 .mainGroupText span {
-  font-weight: var(--font-heavy-weight);
+  font-weight: 500;
+  filter: brightness(1.1);
 }
 
 @media (max-width: 768px) {
