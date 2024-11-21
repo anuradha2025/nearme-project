@@ -55,7 +55,6 @@ const NavSelector = () => {
     <Select
       styles={customStyles}
       components={{ DropdownIndicator }}
-      //   className="font-thin"
       options={options}
       placeholder="Select an option"
       isClearable={false}

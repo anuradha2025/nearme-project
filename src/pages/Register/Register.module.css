@@ -1,8 +1,33 @@
-.socialLoginBtn {
-  background-color: white;
-  transition: all 0.2s ease-in-out;
+.formContainer {
+  color: #A2A2A2;
 }
 
-.socialLoginBtn:hover {
-  background-color: #f3f4f6;
+.formContainer input,
+.formContainer textarea {
+  /* border: 1px solid #A2A2A2; */
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
+
+/* .customCheckboxLabel {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  vertical-align: middle;
+  color: red;
+}
+
+.customCheckboxLabel input {
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  vertical-align: middle;
+  padding: 2px;
+  background-color: red;
+}
+
+.customCheckboxLabel span {
+  display: inline-flex;
+} */

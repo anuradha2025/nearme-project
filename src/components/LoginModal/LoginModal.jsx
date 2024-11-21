@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from "react-modal";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import styles from "./LoginModal.module.css";
@@ -6,11 +7,12 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+// Bind modal to appElement for accessibility
+Modal.setAppElement("#root");
+
 const LoginModal = ({ isOpen, onClose }) => {
   const [phone, setPhone] = useState("");
   const [valid, setValid] = useState(false);
-
-  if (!isOpen) return null;
 
   const handleLogin = () => {
     if (valid) {
@@ -20,18 +22,38 @@ const LoginModal = ({ isOpen, onClose }) => {
     }
   };
 
-  const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
+  const customStyles = {
+    overlay: {
+      backgroundColor: "hsla(0, 0%, 45%, 0.5)",
+      backdropFilter: "blur(2px)",
+      zIndex: 1000,
+    },
+    content: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      transform: "translate(-50%, -50%)",
+      backgroundColor: "#EDEDED",
+      width: "95%",
+      maxWidth: "56rem",
+      padding: 0,
+      border: "2px solid white",
+      borderRadius: "0.8rem",
+      overflow: "auto",
+    },
   };
 
   return (
-    <div className={styles.modalOverlay} onClick={handleBackdropClick}>
-      <div
-        className="container flex flex-col md:flex-row justify-between p-4 md:p-8 pb-4 border-2 border-white max-w-4xl relative"
-        style={{ borderRadius: "0.8rem" }}
-      >
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      style={customStyles}
+      contentLabel="Login Modal"
+      className={styles.modalAnimation}
+    >
+      <div className="container flex flex-col md:flex-row justify-between p-4 md:p-8 pb-4 relative">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -87,22 +109,20 @@ const LoginModal = ({ isOpen, onClose }) => {
               className={`bg-red-600 text-white border-none py-3 mt-3 cursor-pointer transition-colors ${
                 !valid ? "opacity-50 !cursor-not-allowed" : "hover:bg-red-700"
               }`}
-              style={{
-                borderRadius: "0.9rem",
-              }}
+              style={{ borderRadius: "0.9rem" }}
             >
               Login
             </button>
             <h3 className="text-gray-600 font-normal my-5">OR</h3>
             <button
               onClick={() => console.log("Google login")}
-              className={`${styles.socialLoginBtn} hover:text-black py-3 mb-2 cursor-pointer font-medium  transition-colors flex items-center justify-center gap-2`}
+              className={`${styles.socialLoginBtn} hover:text-black py-3 mb-2 cursor-pointer font-medium transition-colors flex items-center justify-center gap-2`}
             >
               <FcGoogle className="text-3xl" /> Continue with Google
             </button>
             <button
               onClick={() => console.log("Facebook login")}
-              className={`${styles.socialLoginBtn} hover:text-black py-3 mb-1 cursor-pointer font-medium  transition-colors flex items-center justify-center gap-2`}
+              className={`${styles.socialLoginBtn} hover:text-black py-3 mb-1 cursor-pointer font-medium transition-colors flex items-center justify-center gap-2`}
             >
               <FaFacebook className="text-3xl text-blue-600" /> Continue with
               Facebook
@@ -117,13 +137,14 @@ const LoginModal = ({ isOpen, onClose }) => {
                   Terms&nbsp;and&nbsp;Conditions
                 </a>
               </p>
-              <p className="text-gray-500 font-normal  mt-5">
+              <p className="text-gray-500 font-normal mt-5">
                 <span className="no-word-break">Don't have an account?</span>
                 &nbsp;&nbsp;&nbsp;
                 <Link
                   to="/register"
                   state={{ from: "homepage" }}
                   className="text-red-600 font-semibold"
+                  onClick={onClose}
                 >
                   Sign&nbsp;Up
                 </Link>
@@ -132,7 +153,7 @@ const LoginModal = ({ isOpen, onClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 };
 

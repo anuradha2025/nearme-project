@@ -14,7 +14,6 @@ const customSelectStyles = {
     ...provided,
     backgroundColor: "transparent",
     border: "none",
-    // color: "white",
     minWidth: "150px",
     fontWeight: "300",
     cursor: "pointer",
@@ -35,7 +34,6 @@ const customSelectStyles = {
   option: (provided) => ({
     ...provided,
     cursor: "pointer",
-    // backgroundColor: "transparent",
   }),
 };
 
