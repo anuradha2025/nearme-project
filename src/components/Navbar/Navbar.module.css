@@ -1,4 +1,4 @@
-.topBar {
+.navbar {
   z-index: 2;
   background: transparent;
   display: flex;
@@ -18,7 +18,7 @@
   border-radius: 20px;
   background-color: white;
   color: black;
-  font-weight: var(--font-medium-weight);
+  font-weight: 500;
 }
 
 .icon {

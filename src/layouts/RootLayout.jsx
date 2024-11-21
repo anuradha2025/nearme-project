@@ -1,19 +1,17 @@
-import Topbar from "../components/TopBar/Topbar";
-import BottomCover from "../components/BottomCover/BottomCover";
-import TradeMarkCover from "../components/TradeMarkCover/TradeMarkCover";
 import { Outlet } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
+// import Footer from "../Footer";
 
 const RootLayout = () => {
-    return (
-        <div className="min-h-screen bg-gradient-to-r from-[rgba(87,54,0,0.95)] to-black">
-            <Topbar />
-            <main>
-                <Outlet />
-            </main>
-            <BottomCover />
-            <TradeMarkCover />
-        </div>
-    );
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      {/* <Footer /> */}
+    </div>
+  );
 };
 
 export default RootLayout;

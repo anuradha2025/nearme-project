@@ -1,11 +1,11 @@
 import { useState } from "react";
-import styles from "./Topbar.module.css";
+import styles from "./Navbar.module.css";
 import { FaRegBell } from "react-icons/fa";
 import { FiMessageCircle } from "react-icons/fi";
 import LoginModal from "../LoginModal/LoginModal";
 import NavSelector from "./NavSelector";
 
-const Topbar = () => {
+const Navbar = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleLoginClick = () => {
@@ -14,7 +14,7 @@ const Topbar = () => {
 
   return (
     <>
-      <div className={styles.topBar}>
+      <div className={styles.navbar}>
         <NavSelector />
         <FiMessageCircle className={styles.icon} />
         <FaRegBell className={styles.icon} />
@@ -31,4 +31,4 @@ const Topbar = () => {
   );
 };
 
-export default Topbar;
+export default Navbar;

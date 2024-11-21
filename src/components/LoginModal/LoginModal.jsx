@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import styles from "./LoginModal.module.css";
-
 import { FcGoogle } from "react-icons/fc";
-
 import { FaFacebook } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [phone, setPhone] = useState("");
@@ -121,9 +120,13 @@ const LoginModal = ({ isOpen, onClose }) => {
               <p className="text-gray-500 font-normal  mt-5">
                 <span className="no-word-break">Don't have an account?</span>
                 &nbsp;&nbsp;&nbsp;
-                <a href="#" className="text-red-600 font-semibold">
+                <Link
+                  to="/register"
+                  state={{ from: "homepage" }}
+                  className="text-red-600 font-semibold"
+                >
                   Sign&nbsp;Up
-                </a>
+                </Link>
               </p>
             </div>
           </div>
