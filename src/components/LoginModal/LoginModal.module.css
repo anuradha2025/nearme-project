@@ -13,8 +13,8 @@
   animation: fadeIn 0.2s ease-in-out;
 }
 
-.modalOverlay > div {
-  background: #ededed;
+.modalOverlay>div {
+  background: #EDEDED;
   width: 95%;
   max-width: 56rem;
   margin: 1rem;
@@ -32,7 +32,7 @@
 }
 
 .socialLoginBtn:hover {
-  background: #fff;
+  background: #FFF;
   filter: brightness(1.1);
 }
 
@@ -67,7 +67,7 @@
 
 .termsAndConditions {
   font-size: 1rem;
-  color: #0099ff;
+  color: #0099FF;
 }
 
 .phoneInputContainer :global(.react-tel-input .form-control) {
@@ -115,6 +115,7 @@
 .modalAnimation {
   animation: fadeIn 0.2s ease-in-out;
 }
+
 
 @keyframes fadeIn {
   from {

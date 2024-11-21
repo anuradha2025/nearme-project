@@ -16,7 +16,7 @@ const customStyles = {
     boxShadow: state.isFocused ? "none" : "none",
     color: "white",
     fontSize: "1rem",
-    fontWeight: "100",
+    fontWeight: "300",
     cursor: "pointer",
   }),
   singleValue: (provided) => ({
@@ -25,16 +25,16 @@ const customStyles = {
   }),
   menu: (provided) => ({
     ...provided,
-    backgroundColor: "black",
+    backgroundColor: "transparent",
     width: "auto",
     minWidth: "100%",
   }),
   option: (provided, state) => ({
     ...provided,
-    backgroundColor: state.isSelected ? "gray" : "black",
-    color: "white",
+    backgroundColor: state.isSelected ? "#A4A4A3" : "#F4F4F4",
+    color: "black",
     fontSize: "1rem",
-    fontWeight: "100",
+    fontWeight: "300",
     cursor: "pointer",
     "&:hover": {
       backgroundColor: "gray",

@@ -50,7 +50,7 @@ const SearchBar = () => {
         type="text"
         placeholder="Enter your location or search here to get started...."
         title="Enter your location or search here to get started...."
-        className={`${styles.searchBarInput} font-light`}
+        className={`${styles.searchBarInput} font-light text-center md:text-left`}
       />
       <button className={styles.searchBarButton}>
         <CiSearch />
