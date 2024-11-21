@@ -1,6 +1,6 @@
 import Select, { components } from "react-select";
 import { SlArrowDown } from "react-icons/sl";
-import styles from "./Topbar.module.css";
+import styles from "./Navbar.module.css";
 
 const options = [
   { value: "home", label: "Home" },

@@ -1,11 +1,5 @@
-:root {
-  --font-light-weight: 100;
-  --font-medium-weight: 500;
-  --font-heavy-weight: 600;
-}
-
 .homepage {
-  background: radial-gradient(82.08% 117.11% at 53.09% 43.75%, rgba(87, 54, 0, 0.95) 0%, #000000 100%);
+  /* background: radial-gradient(82.08% 117.11% at 53.09% 43.75%, rgba(87, 54, 0, 0.95) 0%, #000000 100%); */
   min-height: 100vh;
   display: flex;
   flex-direction: column;

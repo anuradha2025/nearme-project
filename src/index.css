@@ -8,8 +8,13 @@ body {
   box-sizing: border-box;
   font-family: "Noto Sans Display", serif;
   font-optical-sizing: auto;
+  background: radial-gradient(
+    82.08% 117.11% at 53.09% 43.75%,
+    rgba(87, 54, 0, 0.95) 0%,
+    #000000 100%
+  );
+  z-index: -1;
 }
-
 
 .no-word-break {
   white-space: nowrap;
