@@ -1,0 +1,21 @@
+.footer {
+    /* min-height: 40vh; */
+    background: hsla(38, 47%, 15%, 1);
+
+    background: radial-gradient(circle, hsla(38, 47%, 15%, 1) 0%, hsla(36, 42%, 13%, 1) 50%, hsla(36, 31%, 10%, 1) 100%);
+
+    background: -moz-radial-gradient(circle, hsla(38, 47%, 15%, 1) 0%, hsla(36, 42%, 13%, 1) 50%, hsla(36, 31%, 10%, 1) 100%);
+
+    background: -webkit-radial-gradient(circle, hsla(38, 47%, 15%, 1) 0%, hsla(36, 42%, 13%, 1) 50%, hsla(36, 31%, 10%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#382B14", endColorstr="#2F2413", GradientType=1);
+}
+
+.footer h4,
+.footer p:nth-of-type(1) {
+    color: #676767;
+}
+
+.footer:last-child {
+    color: #cbcbcb;
+}

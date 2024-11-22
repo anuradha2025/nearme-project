@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
 import LoginModal from "../../components/LoginModal/LoginModal";
 import { useState } from "react";
+import Footer from './../../components/Footer/Footer';
 
 const RegistrationForm = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -55,180 +56,182 @@ const RegistrationForm = () => {
   });
 
   return (
-    <div
-      className={`${styles.formContainer} min-h-screen flex items-center justify-center bg-transparent py-12 px-4`}
-    >
-      <form
-        onSubmit={formik.handleSubmit}
-        className="max-w-xl w-full space-y-6"
+    <>
+      <div
+        className={`${styles.formContainer} min-h-screen flex items-center justify-center bg-transparent py-12 px-4`}
       >
-        <h2 className="text-white font-bold text-3xl">Register</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <form
+          onSubmit={formik.handleSubmit}
+          className="max-w-xl w-full space-y-6"
+        >
+          <h2 className="text-white font-bold text-3xl">Register</h2>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                {...formik.getFieldProps("firstName")}
+                className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+              />
+              {formik.touched.firstName && formik.errors.firstName && (
+                <div className="text-red-500 text-sm">
+                  {formik.errors.firstName}
+                </div>
+              )}
+            </div>
+            <div>
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                {...formik.getFieldProps("lastName")}
+                className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+              />
+              {formik.touched.lastName && formik.errors.lastName && (
+                <div className="text-red-500 text-sm">
+                  {formik.errors.lastName}
+                </div>
+              )}
+            </div>
+          </div>
           <div>
-            <input
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-              {...formik.getFieldProps("firstName")}
+            <textarea
+              name="address"
+              placeholder="Address"
+              {...formik.getFieldProps("address")}
               className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
             />
-            {formik.touched.firstName && formik.errors.firstName && (
-              <div className="text-red-500 text-sm">
-                {formik.errors.firstName}
-              </div>
+            {formik.touched.address && formik.errors.address && (
+              <div className="text-red-500 text-sm"> {formik.errors.address}</div>
+            )}
+          </div>
+          <div>
+            <PhoneInput
+              country={"lk"}
+              value={formik.values.phone}
+              onChange={(phone) => formik.setFieldValue("phone", phone)}
+              containerClass="w-full rounded-2xl"
+              inputClass={`w-full px-3 py-2 border rounded-xl border-gray-300 !bg-transparent ${formik.values.phone ? "text-white" : "text-gray-400"
+                }`}
+              buttonClass="!bg-transparent border-none"
+              dropdownClass="!bg-gray-300 !text-gray-700"
+              buttonStyle={{
+                backgroundColor: "transparent",
+                borderRight: "2px solid #9ca3af",
+              }}
+              inputStyle={{
+                backgroundColor: "transparent",
+                color: formik.values.phone ? "white" : "#9ca3af",
+              }}
+            />
+            {formik.touched.phone && formik.errors.phone && (
+              <div className="text-red-500 text-sm"> {formik.errors.phone}</div>
             )}
           </div>
           <div>
             <input
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              {...formik.getFieldProps("lastName")}
+              type="email"
+              name="email"
+              placeholder="Email"
+              {...formik.getFieldProps("email")}
               className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
             />
-            {formik.touched.lastName && formik.errors.lastName && (
+            {formik.touched.email && formik.errors.email && (
+              <div className="text-red-500 text-sm"> {formik.errors.email}</div>
+            )}
+          </div>
+          <div>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              {...formik.getFieldProps("password")}
+              className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+            />
+            {formik.touched.password && formik.errors.password && (
+              <div className="text-red-500 text-sm">{formik.errors.password}</div>
+            )}
+          </div>
+          <div>
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              {...formik.getFieldProps("confirmPassword")}
+              className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+            />
+            {formik.touched.confirmPassword && formik.errors.confirmPassword && (
               <div className="text-red-500 text-sm">
-                {formik.errors.lastName}
+                {formik.errors.confirmPassword}
               </div>
             )}
           </div>
-        </div>
-        <div>
-          <textarea
-            name="address"
-            placeholder="Address"
-            {...formik.getFieldProps("address")}
-            className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
-          />
-          {formik.touched.address && formik.errors.address && (
-            <div className="text-red-500 text-sm"> {formik.errors.address}</div>
-          )}
-        </div>
-        <div>
-          <PhoneInput
-            country={"lk"}
-            value={formik.values.phone}
-            onChange={(phone) => formik.setFieldValue("phone", phone)}
-            containerClass="w-full rounded-2xl"
-            inputClass={`w-full px-3 py-2 border rounded-xl border-gray-300 !bg-transparent ${
-              formik.values.phone ? "text-white" : "text-gray-400"
-            }`}
-            buttonClass="!bg-transparent border-none"
-            dropdownClass="!bg-gray-300 !text-gray-700"
-            buttonStyle={{
-              backgroundColor: "transparent",
-              borderRight: "2px solid #9ca3af",
-            }}
-            inputStyle={{
-              backgroundColor: "transparent",
-              color: formik.values.phone ? "white" : "#9ca3af",
-            }}
-          />
-          {formik.touched.phone && formik.errors.phone && (
-            <div className="text-red-500 text-sm"> {formik.errors.phone}</div>
-          )}
-        </div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            {...formik.getFieldProps("email")}
-            className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
-          />
-          {formik.touched.email && formik.errors.email && (
-            <div className="text-red-500 text-sm"> {formik.errors.email}</div>
-          )}
-        </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            {...formik.getFieldProps("password")}
-            className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
-          />
-          {formik.touched.password && formik.errors.password && (
-            <div className="text-red-500 text-sm">{formik.errors.password}</div>
-          )}
-        </div>
-        <div>
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            {...formik.getFieldProps("confirmPassword")}
-            className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
-          />
-          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-            <div className="text-red-500 text-sm">
-              {formik.errors.confirmPassword}
-            </div>
-          )}
-        </div>
-        <div className="space-y-2 flex flex-col items-center">
-          <label>
-            <input
-              type="checkbox"
-              name="acceptUpdates"
-              {...formik.getFieldProps("acceptUpdates")}
-              className="mr-2"
-            />
-            <span>I agree to receive news and updates</span>
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              name="acceptTerms"
-              {...formik.getFieldProps("acceptTerms")}
-              className="mr-2"
-            />
-            <span>
-              I agree to the{" "}
-              <Link to="#" className="text-blue-400">
-                terms and conditions
-              </Link>
-            </span>
-          </label>
-          {formik.touched.acceptTerms && formik.errors.acceptTerms && (
-            <div className="text-red-500 text-sm">
-              {formik.errors.acceptTerms}
-            </div>
-          )}
-        </div>
-        <div className="flex flex-col space-y-4">
-          <button
-            type="submit"
-            className="w-full bg-red-500 hover:bg-red-700 text-white p-3 rounded-2xl"
-          >
-            Register
-          </button>
-          <div className="flex space-x-4">
+          <div className="space-y-2 flex flex-col items-center">
+            <label>
+              <input
+                type="checkbox"
+                name="acceptUpdates"
+                {...formik.getFieldProps("acceptUpdates")}
+                className="mr-2"
+              />
+              <span>I agree to receive news and updates</span>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="acceptTerms"
+                {...formik.getFieldProps("acceptTerms")}
+                className="mr-2"
+              />
+              <span>
+                I agree to the{" "}
+                <Link to="#" className="text-blue-400">
+                  terms and conditions
+                </Link>
+              </span>
+            </label>
+            {formik.touched.acceptTerms && formik.errors.acceptTerms && (
+              <div className="text-red-500 text-sm">
+                {formik.errors.acceptTerms}
+              </div>
+            )}
+          </div>
+          <div className="flex flex-col space-y-4">
             <button
-              type="button"
-              onClick={() => navigate(-1)}
-              className="w-1/2 flex justify-center items-center bg-white hover:bg-gray-300 text-red-500 p-3 rounded-2xl"
+              type="submit"
+              className="w-full bg-red-500 hover:bg-red-700 text-white p-3 rounded-2xl"
             >
-              <IoIosArrowBack className="flex justify-center" />
-              Go Back
+              Register
             </button>
+            <div className="flex space-x-4">
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="w-1/2 flex justify-center items-center bg-white hover:bg-gray-300 text-red-500 p-3 rounded-2xl"
+              >
+                <IoIosArrowBack className="flex justify-center" />
+                Go Back
+              </button>
 
-            <button
-              type="button"
-              // onClick={() => navigate("/login")}
-              onClick={handleLoginClick}
-              className="w-1/2 bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-2xl"
-            >
-              Login
-            </button>
+              <button
+                type="button"
+                // onClick={() => navigate("/login")}
+                onClick={handleLoginClick}
+                className="w-1/2 bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-2xl"
+              >
+                Login
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
       <LoginModal
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
       />
-    </div>
+      <Footer />
+    </>
   );
 };
 

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://anuradha2k21.github.io/nearme-project/",
+  "homepage": "https://anuradha2k21.github.io/nearme-project",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

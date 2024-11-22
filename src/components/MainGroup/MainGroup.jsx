@@ -1,18 +1,11 @@
 import styles from "./MainGroup.module.css";
-import GradientText from "./GradientText";
+import LogoText from "./LogoText";
 import SearchBar from "./SearchBar";
 
 const MainGroup = () => {
   return (
     <div className={styles.mainGroup}>
-      <GradientText
-        text="NearMe"
-        gradientColors={[
-          { color: "#e2509f", stop: "0%" },
-          { color: "#d9a441", stop: "45%" },
-          { color: "#de4e31", stop: "100%" },
-        ]}
-      />
+      <LogoText text="NearMe" />
       <p className={`${styles.mainGroupText} font-extralight`}>
         Find trusted <span>services</span> and top <span>products</span> in your
         area instantly.
