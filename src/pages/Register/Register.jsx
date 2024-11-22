@@ -1,132 +1,235 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FcGoogle } from 'react-icons/fc';
-import { FaFacebook } from 'react-icons/fa';
-import styles from './Register.module.css';
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { IoIosArrowBack } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./Register.module.css";
+import LoginModal from "../../components/LoginModal/LoginModal";
+import { useState } from "react";
 
-const Register = () => {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        fullName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    });
+const RegistrationForm = () => {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
+  const handleLoginClick = () => {
+    setIsLoginModalOpen(true);
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Add your registration logic here
-        console.log('Registration data:', formData);
-    };
+  const validationSchema = Yup.object({
+    firstName: Yup.string().required("First name is required"),
+    lastName: Yup.string().required("Last name is required"),
+    address: Yup.string().required("Address is required"),
+    phone: Yup.string().required("Phone number is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters")
+      .required("Password is required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Confirm password is required"),
+    acceptUpdates: Yup.boolean(),
+    acceptTerms: Yup.boolean().oneOf(
+      [true],
+      "You must accept terms and conditions"
+    ),
+  });
 
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-8">
-                <div>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                        Create your account
-                    </h2>
-                </div>
-                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    <div className="rounded-md shadow-sm -space-y-px">
-                        <div>
-                            <input
-                                name="fullName"
-                                type="text"
-                                required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                                placeholder="Full Name"
-                                value={formData.fullName}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <input
-                                name="email"
-                                type="email"
-                                required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                                placeholder="Email address"
-                                value={formData.email}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <input
-                                name="password"
-                                type="password"
-                                required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                                placeholder="Password"
-                                value={formData.password}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <input
-                                name="confirmPassword"
-                                type="password"
-                                required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                                placeholder="Confirm Password"
-                                value={formData.confirmPassword}
-                                onChange={handleChange}
-                            />
-                        </div>
-                    </div>
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      address: "",
+      phone: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      acceptUpdates: false,
+      acceptTerms: false,
+    },
 
-                    <div>
-                        <button
-                            type="submit"
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                        >
-                            Register
-                        </button>
-                    </div>
-                </form>
+    validationSchema,
+    onSubmit: (values) => {
+      console.log("Form data:", values);
+    },
+  });
 
-                <div className="mt-6">
-                    <div className="relative">
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div className="relative flex justify-center text-sm">
-                            <span className="px-2 bg-gray-50 text-gray-500">Or continue with</span>
-                        </div>
-                    </div>
-
-                    <div className="mt-6 grid grid-cols-2 gap-3">
-                        <button
-                            onClick={() => console.log("Google login")}
-                            className={`${styles.socialLoginBtn} text-gray-500 hover:text-gray-600 py-2 px-4 rounded-md border flex items-center justify-center gap-2`}
-                        >
-                            <FcGoogle className="text-xl" /> Google
-                        </button>
-                        <button
-                            onClick={() => console.log("Facebook login")}
-                            className={`${styles.socialLoginBtn} text-gray-500 hover:text-gray-600 py-2 px-4 rounded-md border flex items-center justify-center gap-2`}
-                        >
-                            <FaFacebook className="text-xl text-blue-600" /> Facebook
-                        </button>
-                    </div>
-                </div>
-
-                <p className="mt-2 text-center text-sm text-gray-600">
-                    Already have an account?{' '}
-                    <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
-                        Sign in
-                    </Link>
-                </p>
-            </div>
+  return (
+    <div
+      className={`${styles.formContainer} min-h-screen flex items-center justify-center bg-transparent py-12 px-4`}
+    >
+      <form
+        onSubmit={formik.handleSubmit}
+        className="max-w-xl w-full space-y-6"
+      >
+        <h2 className="text-white font-bold text-3xl">Register</h2>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              {...formik.getFieldProps("firstName")}
+              className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+            />
+            {formik.touched.firstName && formik.errors.firstName && (
+              <div className="text-red-500 text-sm">
+                {formik.errors.firstName}
+              </div>
+            )}
+          </div>
+          <div>
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              {...formik.getFieldProps("lastName")}
+              className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+            />
+            {formik.touched.lastName && formik.errors.lastName && (
+              <div className="text-red-500 text-sm">
+                {formik.errors.lastName}
+              </div>
+            )}
+          </div>
         </div>
-    );
+        <div>
+          <textarea
+            name="address"
+            placeholder="Address"
+            {...formik.getFieldProps("address")}
+            className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+          />
+          {formik.touched.address && formik.errors.address && (
+            <div className="text-red-500 text-sm"> {formik.errors.address}</div>
+          )}
+        </div>
+        <div>
+          <PhoneInput
+            country={"lk"}
+            value={formik.values.phone}
+            onChange={(phone) => formik.setFieldValue("phone", phone)}
+            containerClass="w-full rounded-2xl"
+            inputClass={`w-full px-3 py-2 border rounded-xl border-gray-300 !bg-transparent ${
+              formik.values.phone ? "text-white" : "text-gray-400"
+            }`}
+            buttonClass="!bg-transparent border-none"
+            dropdownClass="!bg-gray-300 !text-gray-700"
+            buttonStyle={{
+              backgroundColor: "transparent",
+              borderRight: "2px solid #9ca3af",
+            }}
+            inputStyle={{
+              backgroundColor: "transparent",
+              color: formik.values.phone ? "white" : "#9ca3af",
+            }}
+          />
+          {formik.touched.phone && formik.errors.phone && (
+            <div className="text-red-500 text-sm"> {formik.errors.phone}</div>
+          )}
+        </div>
+        <div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            {...formik.getFieldProps("email")}
+            className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+          />
+          {formik.touched.email && formik.errors.email && (
+            <div className="text-red-500 text-sm"> {formik.errors.email}</div>
+          )}
+        </div>
+        <div>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            {...formik.getFieldProps("password")}
+            className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+          />
+          {formik.touched.password && formik.errors.password && (
+            <div className="text-red-500 text-sm">{formik.errors.password}</div>
+          )}
+        </div>
+        <div>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            {...formik.getFieldProps("confirmPassword")}
+            className="w-full px-3 py-2 border rounded-xl border-gray-300 bg-transparent"
+          />
+          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+            <div className="text-red-500 text-sm">
+              {formik.errors.confirmPassword}
+            </div>
+          )}
+        </div>
+        <div className="space-y-2 flex flex-col items-center">
+          <label>
+            <input
+              type="checkbox"
+              name="acceptUpdates"
+              {...formik.getFieldProps("acceptUpdates")}
+              className="mr-2"
+            />
+            <span>I agree to receive news and updates</span>
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="acceptTerms"
+              {...formik.getFieldProps("acceptTerms")}
+              className="mr-2"
+            />
+            <span>
+              I agree to the{" "}
+              <Link to="#" className="text-blue-400">
+                terms and conditions
+              </Link>
+            </span>
+          </label>
+          {formik.touched.acceptTerms && formik.errors.acceptTerms && (
+            <div className="text-red-500 text-sm">
+              {formik.errors.acceptTerms}
+            </div>
+          )}
+        </div>
+        <div className="flex flex-col space-y-4">
+          <button
+            type="submit"
+            className="w-full bg-red-500 hover:bg-red-700 text-white p-3 rounded-2xl"
+          >
+            Register
+          </button>
+          <div className="flex space-x-4">
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="w-1/2 flex justify-center items-center bg-white hover:bg-gray-300 text-red-500 p-3 rounded-2xl"
+            >
+              <IoIosArrowBack className="flex justify-center" />
+              Go Back
+            </button>
+
+            <button
+              type="button"
+              // onClick={() => navigate("/login")}
+              onClick={handleLoginClick}
+              className="w-1/2 bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-2xl"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+      />
+    </div>
+  );
 };
 
-export default Register;
+export default RegistrationForm;

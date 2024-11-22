@@ -14,7 +14,6 @@ const customSelectStyles = {
     ...provided,
     backgroundColor: "transparent",
     border: "none",
-    // color: "white",
     minWidth: "150px",
     fontWeight: "300",
     cursor: "pointer",
@@ -35,7 +34,6 @@ const customSelectStyles = {
   option: (provided) => ({
     ...provided,
     cursor: "pointer",
-    // backgroundColor: "transparent",
   }),
 };
 
@@ -52,7 +50,7 @@ const SearchBar = () => {
         type="text"
         placeholder="Enter your location or search here to get started...."
         title="Enter your location or search here to get started...."
-        className={`${styles.searchBarInput} font-light`}
+        className={`${styles.searchBarInput} font-light text-center md:text-left`}
       />
       <button className={styles.searchBarButton}>
         <CiSearch />
