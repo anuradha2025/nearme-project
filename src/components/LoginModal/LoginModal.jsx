@@ -113,10 +113,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             <button
               onClick={handleLogin}
               disabled={!valid}
-              className={`bg-red-600 text-white border-none py-3 mt-3 cursor-pointer transition-colors ${!valid ? "opacity-50 !cursor-not-allowed" : "hover:bg-red-700"
-                }
-
-      `}
+              className={`bg-red-600 text-white border-none py-3 mt-3 cursor-pointer transition-colors ${!valid ? "opacity-50 !cursor-not-allowed" : "hover:bg-red-700"}`}
               style={{
                 borderRadius: "0.9rem",
               }}
@@ -126,21 +123,13 @@ const LoginModal = ({ isOpen, onClose }) => {
             <h3 className="text-gray-600 font-normal my-5">OR</h3>
             <button
               onClick={() => console.log("Google login")}
-              className={`$ {
-        styles.socialLoginBtn
-      }
-
-      hover:text-black py-3 mb-2 cursor-pointer font-medium transition-colors flex items-center justify-center gap-2`}
+              className={`${styles.socialLoginBtn} py-3 mb-2 cursor-pointer font-medium transition-colors flex items-center justify-center gap-2`}
             >
               <FcGoogle className="text-3xl" /> Continue with Google
             </button>
             <button
               onClick={() => console.log("Facebook login")}
-              className={`$ {
-        styles.socialLoginBtn
-      }
-
-      hover:text-black py-3 mb-1 cursor-pointer font-medium transition-colors flex items-center justify-center gap-2`}
+              className={`${styles.socialLoginBtn} py-3 mb-1 cursor-pointer font-medium transition-colors flex items-center justify-center gap-2`}
             >
               <FaFacebook className="text-3xl text-blue-600" /> Continue with
               Facebook
@@ -152,12 +141,12 @@ const LoginModal = ({ isOpen, onClose }) => {
                 </span>
                 <br />
                 <a href="#" className={styles.termsAndConditions}>
-                  Terms&nbsp; and&nbsp; Conditions
+                  Terms&nbsp;and&nbsp;Conditions
                 </a>
               </p>
               <p className="text-gray-500 font-normal mt-5">
                 <span className="no-word-break">Don't have an account?</span>
-                &nbsp; &nbsp; &nbsp;
+                &nbsp;&nbsp;&nbsp;
                 <Link
                   to="/register"
                   state={{
@@ -166,7 +155,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                   className="text-red-600 font-semibold"
                   onClick={onClose}
                 >
-                  Sign&nbsp; Up
+                  Sign&nbsp;Up
                 </Link>
               </p>
             </div>
