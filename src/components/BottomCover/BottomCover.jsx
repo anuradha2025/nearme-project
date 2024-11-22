@@ -1,4 +1,4 @@
-import styles from "./bottomcover.module.css";
+import styles from "./BottomCover.module.css";
 
 import WelcomeSection from "./WelcomeSection";
 import ContactUsSection from "./ContactUsSection";
