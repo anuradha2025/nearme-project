@@ -6,8 +6,7 @@ import Register from "../pages/Register/Register";
 
 const router = createBrowserRouter([
   {
-    // Parent Route
-    path: "/",
+    path: "/nearme-project",
     element: <RootLayout />,
     errorElement: <NotFound />,
     children: [
@@ -16,13 +15,9 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/register",
+        path: "/nearme-project/register",
         element: <Register />,
       },
-      //   {
-      //     path: "/services",
-      //     element: <Services />,
-      //   },
     ],
   },
 ]);

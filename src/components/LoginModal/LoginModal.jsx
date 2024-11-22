@@ -148,7 +148,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 <span className="no-word-break">Don't have an account?</span>
                 &nbsp;&nbsp;&nbsp;
                 <Link
-                  to="/register"
+                  to="/nearme-project/register"
                   state={{
                     from: "homepage",
                   }}

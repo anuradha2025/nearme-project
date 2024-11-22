@@ -14,7 +14,7 @@ const NotFound = () => {
           The page you are looking for doesn't exist or has been moved.
         </p>
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/nearme-project")}
           className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg 
                    transition-colors duration-200 font-medium"
         >
