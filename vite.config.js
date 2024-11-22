@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
-    base: "/",
+    base: "/nearme-project/",
   };
   if (command !== "serve") {
     config.base = "/nearme-project/";
