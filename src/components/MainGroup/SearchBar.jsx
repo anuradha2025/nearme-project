@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import { CiSearch } from "react-icons/ci";
-import { CSSTransition } from "react-transition-group";
+import Modal from "react-modal";
+import ProductListing from "./ProductListing";
 import styles from "./SearchBar.module.css";
 
 const categories = [
@@ -27,45 +28,20 @@ const customSelectStyles = {
     ...provided,
     backgroundColor: "rgba(255, 255, 255, 0.2)",
   }),
-  multiValueLabel: (provided) => ({
-    ...provided,
-    color: "white",
-    backgroundColor: "transparent",
-  }),
   option: (provided) => ({
     ...provided,
     cursor: "pointer",
   }),
 };
 
-// Mock search results
-const mockResults = [
-  {
-    title: "Colombo City Center",
-    address: "137 Sir James Peiris Mawatha, Colombo 02",
-  },
-  {
-    title: "Galle Face Green",
-    address: "2 Galle Road, Colombo 03",
-  },
-  {
-    title: "Liberty Plaza",
-    address: "250-269 R.A De Mel Mawatha, Colombo 03",
-  },
-  {
-    title: "Majestic City",
-    address: "10 Station Road, Colombo 04",
-  },
-];
-
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
-  const [showResults, setShowResults] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearch = () => {
     if (searchText.trim()) {
-      setShowResults(true);
+      setIsModalOpen(true);
     }
   };
 
@@ -75,9 +51,13 @@ const SearchBar = () => {
     }
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
-      <div className={`${styles.searchBarContainer} z-20`}>
+      <div className={`${styles.searchBarContainer}`}>
         <Select
           options={categories}
           isMulti
@@ -100,26 +80,18 @@ const SearchBar = () => {
         </button>
       </div>
 
-      <CSSTransition
-        in={showResults}
-        timeout={300}
-        classNames={{
-          enter: styles.resultsEnter,
-          enterActive: styles.resultsEnterActive,
-          exit: styles.resultsExit,
-          exitActive: styles.resultsExitActive,
-        }}
-        unmountOnExit
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Product Listing"
+        className={styles.modal}
+        overlayClassName={styles.overlay}
       >
-        <div className={styles.searchResults}>
-          {mockResults.map((result, index) => (
-            <div key={index} className={styles.resultItem}>
-              <h4>{result.title}</h4>
-              <p>{result.address}</p>
-            </div>
-          ))}
-        </div>
-      </CSSTransition>
+        <ProductListing
+          searchText={searchText}
+          selectedCategories={selectedCategories}
+        />
+      </Modal>
     </>
   );
 };

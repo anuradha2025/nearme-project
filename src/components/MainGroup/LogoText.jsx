@@ -24,7 +24,6 @@ const LogoText = ({
         fontSize: fontSize,
         fontWeight: "700",
         marginBottom: "0.7rem",
-        zIndex: "-1",
       }}
     >
       {text}

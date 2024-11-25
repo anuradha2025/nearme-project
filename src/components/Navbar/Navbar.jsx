@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className={`${styles.navbar}`}>
+      <div className={`${styles.navbar} z-30`}>
         <NavSelector />
         <FiMessageCircle className={styles.icon} />
         <FaRegBell className={styles.icon} />

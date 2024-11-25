@@ -31,9 +31,19 @@ const products = [
   },
 ];
 
-const ProductListing = () => {
+const ProductListing = ({ searchText, selectedCategories }) => {
+  // Filter products based on searchText and selectedCategories
+  const filteredProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchText.toLowerCase()) &&
+      (selectedCategories.length === 0 ||
+        selectedCategories.some(
+          (category) => product.category === category.value
+        ))
+  );
+
   return (
-    <div className="max-w-7xl mx-auto p-4 bg-gray-100 min-h-screen">
+    <div className="max-w-7xl mx-auto p-4 bg-gray-100 min-h-screen z-40">
       {/* Header Search Bar */}
       <div className="flex items-center gap-4 mb-8">
         <div className="flex items-center gap-2">
@@ -53,6 +63,8 @@ const ProductListing = () => {
               type="text"
               placeholder="Enter your location or search here to get started..."
               className="w-full px-4 py-2 font-light rounded-full border-2 border-gray-300 focus:outline-none focus:border-orange-500"
+              value={searchText}
+              readOnly
             />
             <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-400 text-white p-2 rounded-full">
               <Search className="w-4 h-4" />
@@ -108,7 +120,7 @@ const ProductListing = () => {
 
         {/* Right Content Area */}
         <div className="flex-1">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div
               key={product.id}
               className="bg-white rounded-lg shadow-md overflow-hidden mb-6"
@@ -120,7 +132,7 @@ const ProductListing = () => {
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-2 left-2 bg-black bg-opacity-75 text-white px-3 py-1 rounded-full">
+                  <div className="absolute bottom-2 left-2 bg-black bg-opacity-90 text-white px-3 py-1 rounded-full">
                     <div className="flex items-center gap-1">
                       <span className="text-xl font-bold">
                         {product.rating}
