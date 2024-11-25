@@ -2,14 +2,18 @@ import { useState } from "react";
 import styles from "./Navbar.module.css";
 import { FaRegBell } from "react-icons/fa";
 import { FiMessageCircle } from "react-icons/fi";
-import LoginModal from "../LoginModal/LoginModal";
+import AuthModalManager from "../AuthModalManager";
 import NavSelector from "./NavSelector";
 
 const Navbar = () => {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const handleLoginClick = () => {
-    setIsLoginModalOpen(true);
+    setIsAuthModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsAuthModalOpen(false);
   };
 
   return (
@@ -23,10 +27,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-      />
+      <AuthModalManager isOpen={isAuthModalOpen} onClose={handleClose} />
     </>
   );
 };

@@ -209,10 +209,7 @@ const RegisterModal = ({ isOpen, onClose, onLoginClick }) => {
               <span>Already have an account?</span>
               <button
                 type="button"
-                onClick={() => {
-                  onClose();
-                  onLoginClick();
-                }}
+                onClick={onLoginClick}
                 className="text-blue-500 hover:underline"
               >
                 Login
