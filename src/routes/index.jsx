@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/nearme-project/register",
+        path: "register",
         element: <Register />,
       },
     ],

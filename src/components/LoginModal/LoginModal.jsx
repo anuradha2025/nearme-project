@@ -1,21 +1,16 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import styles from "./LoginModal.module.css";
-
 import { FcGoogle } from "react-icons/fc";
-
 import { FaFacebook } from "react-icons/fa";
-
-import { Link } from "react-router-dom";
-
-// Bind modal to appElement for accessibility
-Modal.setAppElement("#root");
+import OverlayModal from "../OverlayModal/OverlayModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import styles from "./LoginModal.module.css";
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [phone, setPhone] = useState("");
   const [valid, setValid] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
   const handleLogin = () => {
     if (valid) {
@@ -25,48 +20,14 @@ const LoginModal = ({ isOpen, onClose }) => {
     }
   };
 
-  const customStyles = {
-    overlay: {
-      backgroundColor: "hsla(0, 0%, 45%, 0.5)",
-      backdropFilter: "blur(2px)",
-      zIndex: 1000,
-    },
-
-    content: {
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      transform: "translate(-50%, -50%)",
-      backgroundColor: "#EDEDED",
-      width: "95%",
-      maxWidth: "56rem",
-      padding: 0,
-      border: "2px solid white",
-      borderRadius: "0.8rem",
-      overflow: "auto",
-    },
+  const handleRegisterClick = () => {
+    setIsRegisterModalOpen(true);
+    onClose();
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      style={customStyles}
-      contentLabel="Login Modal"
-      className={styles.modalAnimation}
-    >
-      <div className="container flex flex-col md:flex-row justify-between p-4 md:p-8 pb-4 relative">
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className={styles.closeButton}
-          aria-label="Close modal"
-        >
-          ×
-        </button>
-        {/* Left Section */}
+    <>
+      <OverlayModal isOpen={isOpen} onClose={onClose}>
         <div className="flex flex-col justify-start p-4 md:p-8 w-full md:w-1/2">
           <h1 className="text-black text-3xl md:text-4xl font-light mb-4">
             Login
@@ -76,15 +37,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             personalized recommendations and manage your preferences.
           </p>
         </div>
-        {/* Divider */}
-        <div
-          className={`$ {
-        styles.divider
-      }
-
-      hidden md:block`}
-        />
-        {/* Right Section */}
+        <div className={`${styles.divider} hidden md:block`} />
         <div className="flex flex-col justify-center p-4 md:p-8 w-full md:w-1/2">
           <h3 className="signin-text font-normal text-lg mb-2">
             Continue with mobile number & OTP
@@ -113,7 +66,9 @@ const LoginModal = ({ isOpen, onClose }) => {
             <button
               onClick={handleLogin}
               disabled={!valid}
-              className={`bg-red-600 text-white border-none py-3 mt-3 cursor-pointer transition-colors ${!valid ? "opacity-50 !cursor-not-allowed" : "hover:bg-red-700"}`}
+              className={`bg-red-600 text-white border-none py-3 mt-3 cursor-pointer transition-colors ${
+                !valid ? "opacity-50 !cursor-not-allowed" : "hover:bg-red-700"
+              }`}
               style={{
                 borderRadius: "0.9rem",
               }}
@@ -147,22 +102,22 @@ const LoginModal = ({ isOpen, onClose }) => {
               <p className="text-gray-500 font-normal mt-5">
                 <span className="no-word-break">Don't have an account?</span>
                 &nbsp;&nbsp;&nbsp;
-                <Link
-                  to="/nearme-project/register"
-                  state={{
-                    from: "homepage",
-                  }}
+                <button
                   className="text-red-600 font-semibold"
-                  onClick={onClose}
+                  onClick={handleRegisterClick}
                 >
                   Sign&nbsp;Up
-                </Link>
+                </button>
               </p>
             </div>
           </div>
         </div>
-      </div>
-    </Modal>
+      </OverlayModal>
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsRegisterModalOpen(false)}
+      />
+    </>
   );
 };
 
