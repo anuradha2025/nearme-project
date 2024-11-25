@@ -22,7 +22,10 @@ const LoginModal = ({ isOpen, onClose }) => {
 
   const handleRegisterClick = () => {
     setIsRegisterModalOpen(true);
-    onClose();
+  };
+
+  const handleLoginClick = () => {
+    setIsRegisterModalOpen(false);
   };
 
   return (
@@ -116,6 +119,7 @@ const LoginModal = ({ isOpen, onClose }) => {
       <RegisterModal
         isOpen={isRegisterModalOpen}
         onClose={() => setIsRegisterModalOpen(false)}
+        onLoginClick={handleLoginClick}
       />
     </>
   );

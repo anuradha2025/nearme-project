@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import OverlayModal from "../OverlayModal/OverlayModal";
 import styles from "./RegisterModal.module.css";
 
-const RegisterModal = ({ isOpen, onClose }) => {
+const RegisterModal = ({ isOpen, onClose, onLoginClick }) => {
   const validationSchema = Yup.object({
     firstName: Yup.string().required("First name is required"),
     lastName: Yup.string().required("Last name is required"),
@@ -205,14 +205,17 @@ const RegisterModal = ({ isOpen, onClose }) => {
             >
               Register
             </button>
-            <div className="flex space-x-4">
+            <div className="flex justify-center items-center space-x-2">
+              <span>Already have an account?</span>
               <button
                 type="button"
-                onClick={() => navigate(-1)}
-                className="w-1/2 flex justify-center items-center bg-white hover:bg-gray-300 text-red-500 p-3 rounded-2xl"
+                onClick={() => {
+                  onClose();
+                  onLoginClick();
+                }}
+                className="text-blue-500 hover:underline"
               >
-                <IoIosArrowBack className="flex justify-center" />
-                Go Back
+                Login
               </button>
             </div>
           </div>

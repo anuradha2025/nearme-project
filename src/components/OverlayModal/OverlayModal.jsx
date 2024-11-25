@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "react-modal";
 import styles from "./OverlayModal.module.css";
 
@@ -6,6 +6,17 @@ import styles from "./OverlayModal.module.css";
 Modal.setAppElement("#root");
 
 const OverlayModal = ({ isOpen, onClose, children }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   const customStyles = {
     overlay: {
       backgroundColor: "hsla(0, 0%, 45%, 0.5)",
@@ -26,6 +37,7 @@ const OverlayModal = ({ isOpen, onClose, children }) => {
       border: "2px solid white",
       borderRadius: "0.8rem",
       overflow: "auto",
+      maxHeight: "90vh", // Ensure the modal content is scrollable
     },
   };
 
