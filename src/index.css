@@ -8,11 +8,26 @@ body {
   box-sizing: border-box;
   font-family: "Noto Sans Display", serif;
   font-optical-sizing: auto;
+  background: hsla(37, 76%, 21%, 1);
   background: radial-gradient(
-    82.08% 117.11% at 53.09% 43.75%,
-    rgba(87, 54, 0, 0.95) 0%,
-    #000000 100%
+    circle,
+    hsla(37, 76%, 21%, 1) 0%,
+    hsla(36, 75%, 14%, 1) 50%,
+    hsla(37, 76%, 8%, 1) 100%
   );
+  background: -moz-radial-gradient(
+    circle,
+    hsla(37, 76%, 21%, 1) 0%,
+    hsla(36, 75%, 14%, 1) 50%,
+    hsla(37, 76%, 8%, 1) 100%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    hsla(37, 76%, 21%, 1) 0%,
+    hsla(36, 75%, 14%, 1) 50%,
+    hsla(37, 76%, 8%, 1) 100%
+  );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#5E3F0D", endColorstr="#402A09", GradientType=1 );
 }
 
 .no-word-break {
