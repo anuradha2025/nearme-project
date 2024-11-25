@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import { CiSearch } from "react-icons/ci";
-import Modal from "react-modal";
 import ProductListing from "./ProductListing";
 import styles from "./SearchBar.module.css";
 
@@ -37,11 +36,11 @@ const customSelectStyles = {
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showProductListing, setShowProductListing] = useState(false);
 
   const handleSearch = () => {
     if (searchText.trim()) {
-      setIsModalOpen(true);
+      setShowProductListing(true);
     }
   };
 
@@ -51,13 +50,9 @@ const SearchBar = () => {
     }
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
-    <>
-      <div className={`${styles.searchBarContainer}`}>
+    <div className="flex flex-col items-center">
+      <div className={`${styles.searchBarContainer} z-20`}>
         <Select
           options={categories}
           isMulti
@@ -80,19 +75,15 @@ const SearchBar = () => {
         </button>
       </div>
 
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        contentLabel="Product Listing"
-        className={styles.modal}
-        overlayClassName={styles.overlay}
-      >
-        <ProductListing
-          searchText={searchText}
-          selectedCategories={selectedCategories}
-        />
-      </Modal>
-    </>
+      {showProductListing && (
+        <div className="w-full">
+          <ProductListing
+            searchText={searchText}
+            selectedCategories={selectedCategories}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 

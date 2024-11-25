@@ -10,7 +10,7 @@
   font-size: 1rem;
   font-weight: 300;
   color: black;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 .searchBarInput {
   flex: 1;
