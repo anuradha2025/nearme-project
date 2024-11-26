@@ -160,18 +160,20 @@ const ProductListing = ({ searchText, selectedCategories }) => {
                     {product.price}/
                     <span className="text-sm">{product.unit}</span>
                   </div>
-                  <div className="flex items-start gap-2 absolute bottom-3 cursor-pointer">
-                    <MapPin className="text-gray-500 mt-1" />
-                    <div>
-                      <div className="text-gray-500">LOCATION</div>
-                      <div className="text-sm text-gray-600">
-                        {product.location}
+                  <div className="flex">
+                    <div className="flex items-start gap-2 cursor-pointer mt-auto">
+                      <MapPin className="text-gray-500 mt-1" />
+                      <div>
+                        <div className="text-gray-500">LOCATION</div>
+                        <div className="text-sm text-gray-600">
+                          {product.location}
+                        </div>
                       </div>
                     </div>
+                    <button className="mt-auto ms-auto bg-white rounded-xl px-4 py-2 text-orange-500 font-medium hover:text-orange-600 hover:-translate-y-1 duration-200">
+                      View Shop
+                    </button>
                   </div>
-                  <button className="mt-4 absolute right-3 bottom-3 bg-white rounded-xl px-4 py-2 text-orange-500 font-medium hover:text-orange-600 hover:-translate-y-1 duration-200">
-                    View Shop
-                  </button>
                 </div>
               </div>
             </div>
