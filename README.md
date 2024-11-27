@@ -55,7 +55,7 @@ This project is a web application built with React and Vite. It helps users find
    yarn dev
    ```
 
-Project Structure
+Project Structure  
 
 - `src/`: Contains the source code of the application
   - `components/`: Reusable components
@@ -68,8 +68,8 @@ Project Structure
 - `tailwind.config.js`: Tailwind CSS configuration file
 - `postcss.config.js`: PostCSS configuration file
 
-Contributing
+Contributing  
 Contributions are welcome! Please open an issue or submit a pull request for any changes.
 
-License
+License  
 This project is licensed under the MIT License.
