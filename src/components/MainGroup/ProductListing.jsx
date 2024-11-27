@@ -1,86 +1,335 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MapPin, Search, Star } from "lucide-react";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 const products = [
   {
     id: 1,
     name: "Nutella Chocolate Spread 400g",
-    price: "Rs 1,950",
+    price: 1950,
     unit: "1pc",
     location: "5 Puvilingam Pl, Colombo 00800",
     rating: 4.6,
     image: "https://placehold.co/600x400",
+    adType: "URgENT",
+    posterType: "individual",
+    category: "food",
   },
   {
     id: 2,
-    name: "Peanut Butter 500g",
-    price: "Rs 1,200",
+    name: "Smartphone XYZ",
+    price: 45000,
     unit: "1pc",
     location: "10 Main St, Colombo 00700",
     rating: 4.8,
     image: "https://placehold.co/600x400",
+    adType: "FEaTURED",
+    posterType: "business",
+    category: "Electronics",
   },
   {
     id: 3,
-    name: "Strawberry Jam 300g",
-    price: "Rs 850",
-    unit: "1pc",
+    name: "Luxury Apartment",
+    price: 15000000,
+    unit: "1 unit",
     location: "15 Flower Rd, Colombo 00500",
     rating: 4.5,
     image: "https://placehold.co/600x400",
+    adType: "urgent",
+    posterType: "individual",
+    category: "Property",
+  },
+  {
+    id: 4,
+    name: "Used Car",
+    price: 2500000,
+    unit: "1 unit",
+    location: "20 Park St, Colombo 00200",
+    rating: 4.7,
+    image: "https://placehold.co/600x400",
+    adType: "featured",
+    posterType: "business",
+    category: "Vehicles",
+  },
+  {
+    id: 5,
+    name: "Plumbing Services",
+    price: 5000,
+    unit: "per hour",
+    location: "25 Lake Rd, Colombo 00300",
+    rating: 4.9,
+    image: "https://placehold.co/600x400",
+    adType: "urgent",
+    posterType: "individual",
+    category: "Services",
+  },
+  {
+    id: 6,
+    name: "Garden Furniture Set",
+    price: 12000,
+    unit: "1 set",
+    location: "30 Hill St, Colombo 00400",
+    rating: 4.4,
+    image: "https://placehold.co/600x400",
+    adType: "featured",
+    posterType: "business",
+    category: "Home & Garden",
+  },
+  {
+    id: 7,
+    name: "Golden Retriever Puppy",
+    price: 30000,
+    unit: "1pc",
+    location: "35 Lake Rd, Colombo 00300",
+    rating: 4.8,
+    image: "https://placehold.co/600x400",
+    adType: "urgent",
+    posterType: "individual",
+    category: "Animals",
+  },
+  {
+    id: 8,
+    name: "Designer Dress",
+    price: 8000,
+    unit: "1pc",
+    location: "40 Park St, Colombo 00200",
+    rating: 4.6,
+    image: "https://placehold.co/600x400",
+    adType: "featured",
+    posterType: "business",
+    category: "Fashion & Beauty",
+  },
+  {
+    id: 9,
+    name: "Handmade Jewelry",
+    price: 1500,
+    unit: "1pc",
+    location: "45 Flower Rd, Colombo 00500",
+    rating: 4.7,
+    image: "https://placehold.co/600x400",
+    adType: "urgent",
+    posterType: "individual",
+    category: "Fashion & Beauty",
+  },
+  {
+    id: 10,
+    name: "Organic Honey 250g",
+    price: 700,
+    unit: "1pc",
+    location: "50 Main St, Colombo 00700",
+    rating: 4.5,
+    image: "https://placehold.co/600x400",
+    adType: "featured",
+    posterType: "business",
+    category: "food",
+  },
+  {
+    id: 11,
+    name: "Electric Kettle",
+    price: 3500,
+    unit: "1pc",
+    location: "55 Puvilingam Pl, Colombo 00800",
+    rating: 4.4,
+    image: "https://placehold.co/600x400",
+    adType: "urgent",
+    posterType: "individual",
+    category: "Electronics",
+  },
+  {
+    id: 12,
+    name: "Office Space for Rent",
+    price: 50000,
+    unit: "per month",
+    location: "60 Hill St, Colombo 00400",
+    rating: 4.8,
+    image: "https://placehold.co/600x400",
+    adType: "featured",
+    posterType: "business",
+    category: "Property",
+  },
+  {
+    id: 13,
+    name: "Mountain Bike",
+    price: 45000,
+    unit: "1pc",
+    location: "65 Lake Rd, Colombo 00300",
+    rating: 4.7,
+    image: "https://placehold.co/600x400",
+    adType: "urgent",
+    posterType: "individual",
+    category: "Vehicles",
+  },
+  {
+    id: 14,
+    name: "Cleaning Services",
+    price: 2000,
+    unit: "per hour",
+    location: "70 Park St, Colombo 00200",
+    rating: 4.6,
+    image: "https://placehold.co/600x400",
+    adType: "featured",
+    posterType: "business",
+    category: "Services",
+  },
+  {
+    id: 15,
+    name: "Lawn Mower",
+    price: 15000,
+    unit: "1pc",
+    location: "75 Flower Rd, Colombo 00500",
+    rating: 4.5,
+    image: "https://placehold.co/600x400",
+    adType: "urgent",
+    posterType: "individual",
+    category: "Home & Garden",
+  },
+  {
+    id: 16,
+    name: "Persian Cat",
+    price: 25000,
+    unit: "1pc",
+    location: "80 Main St, Colombo 00700",
+    rating: 4.4,
+    image: "https://placehold.co/600x400",
+    adType: "featured",
+    posterType: "business",
+    category: "Animals",
+  },
+  {
+    id: 17,
+    name: "Makeup Kit",
+    price: 5000,
+    unit: "1pc",
+    location: "85 Puvilingam Pl, Colombo 00800",
+    rating: 4.8,
+    image: "https://placehold.co/600x400",
+    adType: "urgent",
+    posterType: "individual",
+    category: "Fashion & Beauty",
+  },
+  {
+    id: 18,
+    name: "Yoga Mat",
+    price: 1500,
+    unit: "1pc",
+    location: "90 Hill St, Colombo 00400",
+    rating: 4.7,
+    image: "https://placehold.co/600x400",
+    adType: "featured",
+    posterType: "business",
+    category: "Other",
+  },
+  {
+    id: 19,
+    name: "Gaming Laptop",
+    price: 150000,
+    unit: "1pc",
+    location: "95 Lake Rd, Colombo 00300",
+    rating: 4.6,
+    image: "https://placehold.co/600x400",
+    adType: "urgent",
+    posterType: "individual",
+    category: "Electronics",
+  },
+  {
+    id: 20,
+    name: "Digital Marketing Services",
+    price: 10000,
+    unit: "per project",
+    location: "100 Park St, Colombo 00200",
+    rating: 4.5,
+    image: "https://placehold.co/600x400",
+    adType: "featured",
+    posterType: "business",
+    category: "Services",
   },
 ];
 
 const ProductListing = ({ searchText, selectedCategories }) => {
-  // Filter products based on searchText and selectedCategories
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(searchText.toLowerCase()) &&
-      (selectedCategories.length === 0 ||
-        selectedCategories.some(
-          (category) => product.category === category.value
-        ))
-  );
+  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
+  const [sortOption, setSortOption] = useState("Best Match");
+  const [adTypeFilter, setAdTypeFilter] = useState([]);
+  const [posterTypeFilter, setPosterTypeFilter] = useState("All");
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setCurrentLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      },
+      (error) => {
+        console.error("Error getting location: ", error);
+      }
+    );
+  }, []);
+
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+  };
+
+  const handleAdTypeChange = (e) => {
+    const { value, checked } = e.target;
+    setAdTypeFilter((prev) =>
+      checked ? [...prev, value] : prev.filter((type) => type !== value)
+    );
+  };
+
+  const handlePosterTypeChange = (e) => {
+    setPosterTypeFilter(e.target.value);
+  };
+
+  const filteredProducts = products
+    .filter(
+      (product) =>
+        product.name.toLowerCase().includes(searchText.toLowerCase()) &&
+        (selectedCategories.length === 0 ||
+          selectedCategories.some(
+            (category) =>
+              product.category.toLowerCase() === category.value.toLowerCase()
+          )) &&
+        (adTypeFilter.length === 0 ||
+          adTypeFilter.includes(product.adType.toLowerCase())) &&
+        (posterTypeFilter === "All" ||
+          product.posterType.toLowerCase() === posterTypeFilter.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortOption === "Price: Low to High") {
+        return a.price - b.price;
+      } else if (sortOption === "Price: High to Low") {
+        return b.price - a.price;
+      }
+      return 0; // Best Match (default)
+    });
 
   return (
-    <div className="max-w-7xl rounded-2xl mx-auto p-4 bg-gray-100 min-h-screen z-40">
-      {/* Header Search Bar */}
-      <div className="flex items-center gap-4 mb-8">
-        <div className="flex items-center gap-2">
-          <MapPin className="text-red-500" />
-          <span>Select Location</span>
-        </div>
-        <div className="h-6 w-px bg-gray-300" />
-        <div className="flex items-center gap-2">
-          <div className="p-1 bg-orange-100 rounded">
-            <Search className="text-orange-500 w-4 h-4" />
-          </div>
-          <span>Select Category</span>
-        </div>
-        <div className="flex-1">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Enter your location or search here to get started..."
-              className="w-full px-4 py-2 font-light rounded-full border-2 border-gray-300 focus:outline-none focus:border-orange-500"
-              value={searchText}
-              readOnly
-            />
-            <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-400 text-white p-2 rounded-full">
-              <Search className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-
+    <div className="max-w-7xl rounded-2xl mx-auto p-4 mt-3 bg-gray-100 min-h-screen z-40">
       <div className="flex gap-8">
         {/* Left Sidebar Filters */}
         <div className="w-64 flex-shrink-0">
+          {/* Map Preview */}
+          <div className="mb-6">
+            <LoadScript googleMapsApiKey={import.meta.env.GOOGLE_MAPS_API_KEY}>
+              <GoogleMap
+                mapContainerStyle={{ width: "100%", height: "200px" }}
+                center={currentLocation}
+                zoom={15}
+              >
+                <Marker position={currentLocation} />
+              </GoogleMap>
+            </LoadScript>
+          </div>
+
           <div className="space-y-6">
             {/* Sort Results */}
             <div>
               <h3 className="text-sm text-gray-600 mb-2">Sort results by</h3>
-              <select className="w-full p-2 bg-gray-50 border rounded text-gray-700">
+              <select
+                className="w-full p-2 bg-gray-50 border rounded text-gray-700"
+                value={sortOption}
+                onChange={handleSortChange}
+              >
                 <option>Best Match</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>
@@ -92,13 +341,23 @@ const ProductListing = ({ searchText, selectedCategories }) => {
               <h3 className="text-sm text-gray-600 mb-2">Filter ads by</h3>
               <div className="space-y-2">
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" className="rounded border-gray-300" />
+                  <input
+                    type="checkbox"
+                    value="urgent"
+                    className="rounded border-gray-300"
+                    onChange={handleAdTypeChange}
+                  />
                   <span className="inline-block px-2 py-1 bg-red-100 text-red-800 text-xs font-medium rounded">
                     URGENT
                   </span>
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" className="rounded border-gray-300" />
+                  <input
+                    type="checkbox"
+                    value="featured"
+                    className="rounded border-gray-300"
+                    onChange={handleAdTypeChange}
+                  />
                   <span className="inline-block px-2 py-1 bg-amber-900 text-white text-xs font-medium rounded">
                     FEATURED
                   </span>
@@ -109,7 +368,11 @@ const ProductListing = ({ searchText, selectedCategories }) => {
             {/* Type of Poster */}
             <div>
               <h3 className="text-sm text-gray-600 mb-2">Type of poster</h3>
-              <select className="w-full p-2 bg-gray-50 border rounded text-gray-700">
+              <select
+                className="w-full p-2 bg-gray-50 border rounded text-gray-700"
+                value={posterTypeFilter}
+                onChange={handlePosterTypeChange}
+              >
                 <option>All</option>
                 <option>Individual</option>
                 <option>Business</option>
@@ -157,7 +420,7 @@ const ProductListing = ({ searchText, selectedCategories }) => {
                     {product.name}
                   </h2>
                   <div className="text-2xl text-gray-700 mb-4">
-                    {product.price}/
+                    Rs {product.price}/
                     <span className="text-sm">{product.unit}</span>
                   </div>
                   <div className="flex">

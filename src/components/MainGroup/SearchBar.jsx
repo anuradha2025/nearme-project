@@ -5,16 +5,15 @@ import ProductListing from "./ProductListing";
 import styles from "./SearchBar.module.css";
 
 const categories = [
-  { value: "category1", label: "Category 1" },
-  { value: "category2", label: "Category 2" },
-  { value: "category3", label: "Category 3" },
-  { value: "category4", label: "Category 4" },
-  { value: "category5", label: "Category 5" },
-  { value: "category6", label: "Category 6" },
-  { value: "category7", label: "Category 7" },
-  { value: "category8", label: "Category 8" },
-  { value: "category9", label: "Category 9" },
-  { value: "category10", label: "Category 10" },
+  { value: "Food", label: "Food" },
+  { value: "Electronics", label: "Electronics" },
+  { value: "Property", label: "Property" },
+  { value: "Vehicles", label: "Vehicles" },
+  { value: "Services", label: "Services" },
+  { value: "Home & Garden", label: "Home & Garden" },
+  { value: "Animals", label: "Animals" },
+  { value: "Fashion & Beauty", label: "Fashion & Beauty" },
+  { value: "Other", label: "Other" },
 ];
 
 const customSelectStyles = {
@@ -61,14 +60,13 @@ const customSelectStyles = {
     cursor: "pointer",
   }),
 };
-
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showProductListing, setShowProductListing] = useState(false);
 
   const handleSearch = () => {
-    if (searchText.trim()) {
+    if (searchText.trim() || selectedCategories.length > 0) {
       setShowProductListing(true);
     }
   };
