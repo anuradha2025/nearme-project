@@ -1,7 +1,7 @@
 # Nearme Project
 
 This project is a web application built with React and Vite. It helps users find the best services and products near them with personalized recommendations and exclusive deals.  
-[demo](https://anuradha2k21.github.io/nearme-project/)
+[demo](https://anuradha2025.github.io/nearme-project/)
 
 ## Features
 
@@ -55,7 +55,7 @@ This project is a web application built with React and Vite. It helps users find
    yarn dev
    ```
 
-Project Structure  
+Project Structure
 
 - `src/`: Contains the source code of the application
   - `components/`: Reusable components
